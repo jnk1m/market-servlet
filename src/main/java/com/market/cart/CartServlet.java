@@ -18,9 +18,8 @@ public class CartServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    resp.setContentType("text/plain");
+    resp.setContentType("text/html");
     resp.setCharacterEncoding("UTF-8");
-
 
     String paramFood = req.getParameter("food");
     int paramQuantity = Integer.parseInt(req.getParameter("quantity"));
@@ -40,14 +39,15 @@ public class CartServlet extends HttpServlet {
         food.setQuantity(remainingQty);
       }
     }
-
-    log.info("end of cart POST");
+    resp.sendRedirect("/cart");
 
   }
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    log.info("start of cart GET");
+
+    resp.setContentType("text/html");
+    resp.setCharacterEncoding("UTF-8");
 
     HttpSession session = req.getSession(false);
     if (Objects.isNull(session)) {
