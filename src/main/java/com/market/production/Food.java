@@ -1,9 +1,9 @@
 package com.market.production;
 
 public class Food {
-  private final String name;
-  private final int price;
-  private final int quantity;
+  private String name;
+  private int price;
+  private int quantity;
 
   public Food(String name, int price, int quantity) {
     this.name = name;
@@ -21,6 +21,10 @@ public class Food {
 
   public int getQuantity() {
     return quantity;
+  }
+
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
   }
 
   @Override

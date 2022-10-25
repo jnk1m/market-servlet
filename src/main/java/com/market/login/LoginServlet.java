@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class LoginServlet extends HttpServlet {
   @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     HttpSession session = req.getSession(false);
 
     if (Objects.isNull(session)) {
@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
   }
 
   @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     String initId = getServletConfig().getInitParameter("id");
     String initPassword = getServletConfig().getInitParameter("password");
 
@@ -36,6 +36,8 @@ public class LoginServlet extends HttpServlet {
       HttpSession session = req.getSession();
       session.setAttribute("id", id);
       resp.sendRedirect("/login");
+    } else {
+      resp.sendRedirect("/loginForm.html");
     }
 
   }
